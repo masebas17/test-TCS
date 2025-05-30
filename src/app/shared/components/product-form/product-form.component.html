@@ -1,0 +1,164 @@
+<div class="form-container">
+  <div class="form-header">
+    <button class="button button-secondary" (click)="goBack()">cerrar</button>
+    <h2>Formulario de Registro</h2>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-grid">
+      <div class="form-field">
+        <label for="id">ID</label>
+        <input
+          id="id"
+          type="text"
+          formControlName="id"
+          [readonly]="!!initialProduct"
+        />
+        <div
+          *ngIf="form.get('id')?.touched && form.get('id')?.invalid"
+          class="error-msg"
+        >
+          ¡ID no válido!
+        </div>
+        <div
+          *ngIf="
+            form.get('id')?.hasError('minlength') && form.get('id')?.touched
+          "
+        >
+          <small class="error-msg">Mínimo 3 caracteres.</small>
+        </div>
+        <div
+          *ngIf="
+            form.get('id')?.hasError('maxlength') && form.get('id')?.touched
+          "
+        >
+          <small class="error-msg">Máximo 10 caracteres.</small>
+        </div>
+        <small
+          *ngIf="form.get('id')?.hasError('idTaken') && form.get('id')?.touched"
+          class="error-msg"
+        >
+          Este ID ya está en uso.
+        </small>
+      </div>
+
+      <div class="form-field">
+        <label for="nombre">Nombre</label>
+        <input id="name" type="text" formControlName="name" />
+        <div
+          *ngIf="form.get('nombre')?.touched && form.get('nombre')?.invalid"
+          class="error-msg"
+        >
+          Este campo es requerido
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="descripcion">Descripción</label>
+        <textarea id="description" formControlName="description"></textarea>
+        <div
+          *ngIf="
+            form.get('descripcion')?.touched && form.get('descripcion')?.invalid
+          "
+          class="error-msg"
+        >
+          Este campo es requerido
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="logo">Logo</label>
+        <input id="logo" type="text" formControlName="logo" />
+        <div
+          *ngIf="form.get('logo')?.touched && form.get('logo')?.invalid"
+          class="error-msg"
+        >
+          Este campo es requerido
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="date_release">Fecha Liberación</label>
+        <input
+          id="date_release"
+          type="date"
+          formControlName="date_release"
+          [min]="today"
+          [ngClass]="{
+            invalid:
+              form.get('date_release')?.invalid &&
+              form.get('date_release')?.touched
+          }"
+        />
+
+        <div
+          *ngIf="
+            form.get('date_release')?.hasError('required') &&
+            form.get('date_release')?.touched
+          "
+        >
+          <small class="error-msg">La fecha de liberación es requerida.</small>
+        </div>
+
+        <div
+          *ngIf="
+            form.get('date_release')?.hasError('invalidReleaseDate') &&
+            form.get('date_release')?.touched
+          "
+        >
+          <small class="error-msg">La fecha debe ser hoy o posterior.</small>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="date_revision">Fecha Revisión</label>
+        <input
+          id="date_revision"
+          type="date"
+          formControlName="date_revision"
+          [min]="oneYearFromRelease"
+          [ngClass]="{
+            invalid:
+              form.hasError('invalidRevisionDate') &&
+              form.get('date_revision')?.touched
+          }"
+        />
+
+        <div
+          *ngIf="
+            form.get('date_revision')?.hasError('required') &&
+            form.get('date_revision')?.touched
+          "
+        >
+          <small class="error-msg">La fecha de revisión es requerida.</small>
+        </div>
+
+        <div
+          *ngIf="
+            form.hasError('invalidRevisionDate') &&
+            form.get('date_revision')?.touched
+          "
+        >
+          <small class="error-msg"
+            >Debe ser exactamente un año después de la fecha de
+            liberación.</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button
+        type="button"
+        class="button button-secondary"
+        (click)="onReset()"
+        [disabled]="!!initialProduct"
+      >
+        Reiniciar
+      </button>
+      <button type="submit" class="button button-add" [disabled]="form.invalid">
+        Enviar
+      </button>
+    </div>
+  </form>
+</div>

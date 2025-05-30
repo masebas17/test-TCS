@@ -1,0 +1,138 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+:host {
+  display: block;
+}
+
+.container {
+  padding: 64px;
+  margin: auto;
+}
+
+.table-container {
+  background-color: var(--color-surface, #fff);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  padding: 2%;
+  max-width: 100%;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 768px;
+  text-align: left;
+}
+
+thead {
+  background-color: #f9fafb;
+  text-align: left;
+  color: var(--color-muted);
+}
+
+th,
+td {
+  padding: 18px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+td {
+  color: #202124;
+  vertical-align: middle;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  object-fit: cover;
+  text-transform: uppercase;
+}
+
+.custom-select {
+  padding: 6px 18px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: white;
+  font-family: inherit;
+}
+
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.actions-cell {
+  position: relative;
+  text-align: center;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin-top: 4px;
+  width: 120px;
+  z-index: 10;
+}
+
+.dropdown-menu li {
+  padding: 10px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f2f2f2;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 32px;
+  }
+}
