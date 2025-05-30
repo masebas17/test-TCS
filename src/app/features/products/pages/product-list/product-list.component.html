@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="header">
+    <input
+      type="text"
+      placeholder="Search.."
+      (input)="onSearchChange($event)"
+      class="search-input"
+    />
+
+    <button class="button button-add" (click)="navigateToAdd()">Agregar</button>
+  </div>
+  <div class="table-container">
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Logo</th>
+            <th>Nombre del producto</th>
+            <th>
+              Descripción <span title="Descripción del producto">ℹ️</span>
+            </th>
+            <th>Fecha de liberación <span title="Fecha inicial">ℹ️</span></th>
+            <th>
+              Fecha de reestructuración <span title="Fecha posterior">ℹ️</span>
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody *ngIf="!isLoading">
+          <tr *ngFor="let product of filteredProducts">
+            <td>
+              <img [src]="product.logo" [alt]="product.name" class="avatar" />
+            </td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.date_release | date : "dd/MM/yyyy" }}</td>
+            <td>{{ product.date_revision | date : "dd/MM/yyyy" }}</td>
+            <td class="actions-cell">
+              <div class="dropdown">
+                <span
+                  style="cursor: pointer"
+                  (click)="toggleDropdown(product.id)"
+                  >⋮</span
+                >
+                <ul class="dropdown-menu" *ngIf="openDropdownId === product.id">
+                  <li (click)="onEdit(product.id)">Editar</li>
+                  <li (click)="onDelete(product)">Eliminar</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="isLoading">
+          <tr *ngFor="let _ of skeletonArray">
+            <td><div class="skeleton skeleton-text"></div></td>
+            <td><div class="skeleton skeleton-text"></div></td>
+            <td><div class="skeleton skeleton-text"></div></td>
+            <td><div class="skeleton skeleton-avatar"></div></td>
+            <td><div class="skeleton skeleton-button"></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-footer">
+      <span>{{ filteredProducts.length }} Resultados</span>
+      <select class="custom-select" (change)="onPageSizeChange($event)">
+        <option *ngFor="let size of pageSizeOptions" [value]="size">
+          {{ size }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<app-confirm-modal
+  *ngIf="showConfirm"
+  [message]="'¿Deseas eliminar el producto ' + pendingDeleteProduct?.name + '?'"
+  (confirmed)="deleteConfirmed()"
+  (cancelled)="cancelDelete()"
+></app-confirm-modal>

@@ -1,1 +1,124 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --color-background: #f4f6f9;
+  --font-base: "Poppins", sans-serif;
+
+  --color-surface: #ffffff;
+  --color-secondary: #eaecf2;
+  --color-secondary-hover: #eaecf2d5;
+  --color-primary: #fbbc05;
+  --color-primary-hover: #e6a700;
+  --color-danger: #d93025;
+  --color-muted: #5f6368;
+  --color-border: #727475;
+  --color-text: #202124;
+  --color-text-secondary: #152559;
+
+  --font-size: 14px;
+  --border-radius: 6px;
+  --button-border-radius: 2px;
+}
+
+html,
+body {
+  background-color: var(--color-background);
+  font-family: var(--font-base);
+}
+
+input,
+textarea {
+  font-family: var(--font-base);
+  font-size: var(--font-size);
+  padding: 10px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button {
+  font-family: var(--font-base);
+  font-size: var(--font-size);
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button-add {
+  background-color: var(--color-primary);
+  border-radius: var(--button-border-radius);
+  padding: 14px 16px;
+  color: var(--color-text-secondary);
+}
+
+.button-add:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.button-confirm {
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius);
+  padding: 10px 16px;
+  color: var(--color-text-secondary);
+}
+
+.button-confirm:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.button-secondary {
+  background-color: var(--color-secondary);
+  padding: 10px 16px;
+  border-radius: var(--border-radius);
+  color: var(--color-text-secondary);
+}
+
+.button-secondary:hover {
+  background-color: var(--color-secondary-hover);
+}
+
+.button-danger {
+  background-color: var(--color-danger);
+  color: white;
+}
+
+.button-danger:hover {
+  filter: brightness(0.9);
+}
+
+.skeleton {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-text {
+  height: 16px;
+  width: 100px;
+}
+
+.skeleton-avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.skeleton-button {
+  height: 30px;
+  width: 60px;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
