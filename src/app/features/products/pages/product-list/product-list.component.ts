@@ -79,7 +79,7 @@ export class ProductListComponent implements OnInit {
     this.showConfirm = true;
   }
 
-  private resetModal(): void {
+  resetModal(): void {
     this.showConfirm = false;
     this.pendingDeleteProduct = null;
   }
